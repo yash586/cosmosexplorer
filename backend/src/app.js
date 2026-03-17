@@ -4,7 +4,8 @@ import { config } from "./config/index.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import apodRouter from "./routes/apod.js";
 import discoverRouter from "./routes/discover.js";
-import marsRouter from "./routes/mars.js";
+import earthEventRouter from "./routes/earthEvents.js";
+import asteroidRouter from "./routes/asteroid.js";
 
 export const app = express();
 app.use(
@@ -23,6 +24,8 @@ app.use("/api/apod", apodRouter);
 
 app.use("/api/discover", discoverRouter);
 
-app.use("/api/mars", marsRouter);
+app.use("/api/earth-events", earthEventRouter);
+
+app.use("/api/asteroid", asteroidRouter);
 
 app.use(errorHandler);

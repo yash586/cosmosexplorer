@@ -1,6 +1,6 @@
 import axios from "axios";
 import { config } from "../config/index.js";
-import { redis } from "../config/redis.js";
+import { getCache, setCache } from "../config/redis.js";
 
 const APOD_URL = `${config.nasa.baseUrl}/planetary/apod`;
 
@@ -25,14 +25,7 @@ export const fetchAPOD = async ({
   thumbs = true,
 }) => {
   const cacheKey = buildCacheKey({ date, startDate, endDate, count });
-  try {
-    const cached = await redis.get(cacheKey);
-    if (cached) {
-      return JSON.parse(cached);
-    }
-  } catch (redisError) {
-    console.warn("Redis unavailable skipping cache:", redisError.message);
-  }
+  getCache(cacheKey);
 
   const params = { api_key: config.nasa.apiKey, thumbs };
   const extraParams = count
@@ -48,13 +41,7 @@ export const fetchAPOD = async ({
     extraParams,
   });
 
-  try {
-    const ttl = getTTL({ date, startDate, count });
-    await redis.set(cacheKey, JSON.stringify(response.data), "EX", ttl);
-    console.log(`${cacheKey} for ${ttl}`);
-  } catch (redisError) {
-    console.warn("Redis cache write failed", redisError.message);
-  }
-
+  const ttl = getTTL({ date, startDate, count });
+  await setCache(cacheKey, response.data, ttl);
   return response.data;
 };

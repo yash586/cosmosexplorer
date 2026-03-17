@@ -1,5 +1,5 @@
 import axios from "axios";
-import { redis } from "../config/redis.js";
+import { getCache, setCache } from "../config/redis.js";
 
 const IMAGE_BASE_URL = "https://images-api.nasa.gov";
 
@@ -16,7 +16,6 @@ export const fetchNasaImages = async ({
 }) => {
   const cachedKey = `discover:search:${query}:${mediaType || "any"}:${yearStart || "any"}:${yearEnd || "any"}:page${page}`;
   getCache(cachedKey);
-
   const params = {
     q: query,
     ...(mediaType && { media_type: mediaType }),
@@ -98,22 +97,3 @@ export const fetchAssetManifest = async (nasaId) => {
   await setCache(cachedKey, result, 86400);
   return result;
 };
-
-async function getCache(cachedKey) {
-  try {
-    const cached = await redis.get(cachedKey);
-    if (cached) {
-      return JSON.parse(cachedKey);
-    }
-  } catch (error) {
-    console.warn("Redis unavailable", error.message);
-  }
-}
-
-async function setCache(cachedKey, result, ttl) {
-  try {
-    await redis.set(cachedKey, JSON.stringify(result), "EX", ttl);
-  } catch (error) {
-    console.warn("Redis write failed", error.message);
-  }
-}
