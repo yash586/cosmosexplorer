@@ -1,0 +1,30 @@
+.cosmos-footer {
+  background-color: #0d1117;
+  border-top: 1px solid #30363d;
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.cosmos-footer_star {
+  color: #00b4ff;
+}
+
+.cosmos-footer_brand {
+  color: #e6edf3;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.cosmos-footer_text {
+  color: #8b949e;
+  font-size: 0.78rem;
+}
+
+.cosmos-footer_link {
+  color: #00b4ff;
+  text-decoration: none;
+}
+
+.cosmos-footer_link:hover {
+  text-decoration: underline;
+}

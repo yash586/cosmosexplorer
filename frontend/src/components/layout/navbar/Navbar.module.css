@@ -1,0 +1,66 @@
+.cosmos-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.cosmos-navbar.scrolled {
+  background-color: #0d1117;
+  border-bottom: 1px solid #30363d;
+}
+
+/* Logo */
+.cosmos-navbar_logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.cosmos-navbar_star {
+  color: #00b4ff;
+  font-size: 20px;
+}
+
+.cosmos-navbar_brand {
+  color: #e6edf3;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Nav links */
+.cosmos-navbar_link {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: #8b949e;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.cosmos-navbar_link:hover {
+  color: #e6edf3;
+  border-color: #30363d;
+}
+
+.cosmos-navbar_link-active {
+  background-color: #00b4ff;
+  color: #000000 !important;
+  font-weight: 600;
+  border-color: #00b4ff;
+}

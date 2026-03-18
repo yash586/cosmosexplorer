@@ -1,0 +1,113 @@
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #0d1f3a 0%, #0b0e1a 70%);
+}
+
+/* Star dots background */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #ffffff44 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, #ffffff33 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 10%, #ffffff44 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 80%, #ffffff22 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 40%, #ffffff33 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 90%, #ffffff44 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 15%, #ffffff22 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 50%, #ffffff33 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-section_content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  padding: 0 2rem;
+}
+
+/* Icon */
+.hero-section_icon {
+  font-size: 3rem;
+  color: #00b4ff;
+  margin-bottom: 1rem;
+  display: block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Title */
+.hero-section_title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #e6edf3;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.hero-section_title-accent {
+  color: #00b4ff;
+}
+
+/* Subtitle */
+.hero-section_subtitle {
+  font-size: 1.2rem;
+  color: #8b949e;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Description */
+.hero-section_description {
+  font-size: 1rem;
+  color: #8b949e;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button */
+.hero-section_btn {
+  padding: 14px 36px;
+  background-color: #00b4ff;
+  color: #000000;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.hero-section_btn:hover {
+  background-color: #00d4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 180, 255, 0.4);
+}
+
+.hero-section_btn:active {
+  transform: translateY(0);
+}
