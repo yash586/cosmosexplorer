@@ -1,0 +1,32 @@
+/* ErrorMessage.css */
+.error-message {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b0e1a;
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-message_icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.error-message_text {
+  color: #8b949e;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.error-message_btn {
+  padding: 10px 24px;
+  background-color: #00b4ff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
