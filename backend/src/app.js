@@ -26,6 +26,6 @@ app.use("/api/discover", discoverRouter);
 
 app.use("/api/earth-events", earthEventRouter);
 
-app.use("/api/asteroid", asteroidRouter);
+app.use("/api/asteroids", asteroidRouter);
 
 app.use(errorHandler);

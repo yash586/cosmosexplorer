@@ -37,7 +37,7 @@ export const fetchAPOD = async ({
         : {};
 
   const response = await axios.get(APOD_URL, {
-    params,
+    params: { ...params, ...extraParams },
     extraParams,
   });
 
