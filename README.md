@@ -12,8 +12,6 @@
 
 **[🚀 Live Demo](YOUR_VERCEL_URL)** · **[🔧 API](YOUR_RENDER_URL)**
 
-![CosmosExplorer Screenshot](./docs/screenshot.png)
-
 </div>
 
 ---
