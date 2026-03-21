@@ -1,23 +1,15 @@
 import './SpaceWeatherCommon.css';
 
-const DUMMY_STORMS = [
-  { id: 1, startTime: '2026-03-15 06:00', kpIndex: 8, severity: 'Severe'   },
-  { id: 2, startTime: '2026-03-13 18:00', kpIndex: 6, severity: 'Moderate' },
-  { id: 3, startTime: '2026-03-11 12:00', kpIndex: 4, severity: 'Minor'    },
-  { id: 4, startTime: '2026-03-09 00:00', kpIndex: 7, severity: 'Severe'   },
-  { id: 5, startTime: '2026-03-07 09:00', kpIndex: 5, severity: 'Moderate' },
-];
-
 const getSeverityColor = (severity) => ({
   Severe:   '#FF4444',
   Moderate: '#FFB347',
   Minor:    '#00D4AA',
 })[severity] || '#8B949E';
 
-const GeoStormList = () => {
+const GeoStormList = ({storms}) => {
   return (
     <div className="storm_list">
-      {DUMMY_STORMS.map((storm) => {
+      {storms.map((storm) => {
         const color = getSeverityColor(storm.severity);
         return (
           <div key={storm.id} className="storm_item">

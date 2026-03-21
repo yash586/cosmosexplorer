@@ -1,12 +1,7 @@
 import './ApodCommon.css';
+import { formatDate } from '../../utils/date';
 
 const ApodInfo = ({apod}) => {
-  const formatDate = (dateStr) =>{
-    return new Date(dateStr).toLocaleDateString('en-IE', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    });
-  };
-
   return (
     <div className='apod-info'>
       <h1 className='apod-info_title'>{apod.title}</h1>
