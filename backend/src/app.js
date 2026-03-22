@@ -10,10 +10,11 @@ import asteroidRouter from "./routes/asteroid.js";
 export const app = express();
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? process.env.FRONTEND_URL
-        : "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://cosmosexplorer-zeta.vercel.app",
+      process.env.FRONTEND_URL,
+    ],
     credentials: true,
   }),
 );
