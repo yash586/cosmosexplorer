@@ -26,6 +26,7 @@ const cleanAsteroid = (data) => {
       : null,
     orbiting_body: approach?.orbiting_body || null,
     nasa_url: data.nasa_jpl_url,
+    close_approach_date: approach.close_approach_date,
   };
 };
 
