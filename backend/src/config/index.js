@@ -3,7 +3,7 @@ dotenv.config();
 
 export const config = {
   nasa: {
-    baseUrl: process.env.NASA_BASE_URL,
+    baseUrl: process.env.NASA_BASE_URL || "https://api.nasa.gov",
     apiKey: process.env.NASA_API_KEY,
   },
   redis: {
