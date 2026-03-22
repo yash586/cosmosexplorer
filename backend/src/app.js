@@ -10,7 +10,11 @@ import asteroidRouter from "./routes/asteroid.js";
 export const app = express();
 app.use(
   cors({
-    origin: config.frontendUrl,
+    origin:
+      process.env.NODE_ENV === "production"
+        ? process.env.FRONTEND_URL
+        : "http://localhost:5173",
+    credentials: true,
   }),
 );
 
