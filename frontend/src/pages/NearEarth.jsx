@@ -20,6 +20,7 @@ const NearEarth = () => {
 
   useEffect(() => {
     fetchAsteroids(filters);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchAsteroids = async(currentFilters) => {
@@ -29,7 +30,7 @@ const NearEarth = () => {
       const response = await getAsteroids({start_date: currentFilters.startDate, end_date: currentFilters.endDate});
       setData(response.data.data);
     } catch (error) {
-      setError('Failed to load asteroid data. Please try again');
+      setError(error.message);
     }finally{
       setLoading(false);
     }

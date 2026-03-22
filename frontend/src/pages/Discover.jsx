@@ -32,7 +32,7 @@ const Discover = () => {
       setPage(pageNum);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
-      setError('Failed to load images. Please try again.');
+      setError(error.message);
     }finally{
       setLoading(false);
     }

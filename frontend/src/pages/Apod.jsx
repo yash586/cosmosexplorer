@@ -28,7 +28,7 @@ const Apod = () => {
       const response = await getAPOD(params);
       setApod(response.data.data);
     } catch (error) {
-      setError('Failed to load today\'s image. Please try again.');
+      setError(error.message);
     }finally{
       setLoading(false);
     }
@@ -37,9 +37,9 @@ const Apod = () => {
   const fetchAsteroidCount = async () => {
     try {
       const response = await getTodayAsteroids();
-      setAsteroidCount(res.data.data.stats.total);
+      setAsteroidCount(response.data.data.stats.total);
     } catch (error) {
-      // fail silently
+      setError(error.message);
     }
   }
 

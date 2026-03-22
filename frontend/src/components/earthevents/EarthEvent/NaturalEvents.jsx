@@ -3,7 +3,7 @@ import EventStatCards from './EventStatCards';
 import EventList from './EventList';
 import EventDetail from './EventDetail';
 import { getEventCategories, getEarthEvents } from '../../../services/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import LoadingSpinner from '../../common/LoadingSpinner';
 import ErrorMessage from '../../common/ErrorMessage';
 
@@ -19,11 +19,7 @@ const NaturalEvents = () => {
     fetchCategories();
   }, []);
 
-  useEffect(() =>{
-    fetchEvents();
-  }, [activeCategory]);
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -31,11 +27,12 @@ const NaturalEvents = () => {
       setEvents(response.data.data.events);
       if (response.length > 0) setSelected(response[0]);
     } catch (error) {
-      setError('Failed to load the events');
+      setError(error.message);
     }finally{
       setLoading(false);
     }
-  }
+  }, [activeCategory]);
+
   const fetchCategories = async () => {
     try {
       setLoading(true);
@@ -43,12 +40,16 @@ const NaturalEvents = () => {
       const response = await getEventCategories();
       setCategory(response.data.data);
     } catch (error) {
-      setError('Failed to load Categories');
+      setError(error.message);
     }finally{
       setLoading(false);
     }
   }
 
+  useEffect(() =>{
+    fetchEvents();
+  }, [fetchEvents]);
+  
   if (loading) return <LoadingSpinner/>;
   if (error) return <ErrorMessage message={error} onRetry={fetchEvents}/>;
 

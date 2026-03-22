@@ -28,8 +28,8 @@ const SpaceWeather = () => {
       ]);
       setFlares(flaresRes.data.data);
       setStorms(stormsRes.data.data);
-    } catch (err) {
-      setError('Failed to load space weather data.');
+    } catch (error) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
