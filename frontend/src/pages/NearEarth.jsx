@@ -16,19 +16,17 @@ const NearEarth = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState(null);
-  const [filters, setFilters] = useState({
-    startDate: start, endDate: end, hazardous: false, minDiameter: 0,
-  });
+  const [filters, setFilters] = useState({startDate: start, endDate: end, hazardous: false, minDiameter: 0});
 
   useEffect(() => {
-    fetchAsteroids();
+    fetchAsteroids(filters);
   }, []);
 
-  const fetchAsteroids = async() => {
+  const fetchAsteroids = async(currentFilters) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await getAsteroids({start_date: filters.startDate, end_date: filters.endDate, ...(filters.hazardous && {hazardous : true})});
+      const response = await getAsteroids({start_date: currentFilters.startDate, end_date: currentFilters.endDate});
       setData(response.data.data);
     } catch (error) {
       setError('Failed to load asteroid data. Please try again');
@@ -42,8 +40,21 @@ const NearEarth = () => {
   };
 
   const handleSearch = () => {
-    fetchAsteroids();
+    fetchAsteroids(filters);
   }
+
+  const filteredAsteroids = data?.asteroids?.filter(asteroid => {
+    const diameterMatch  = asteroid.diameter_km >= filters.minDiameter;
+    const hazardousMatch = filters.hazardous ? asteroid.hazardous === true : true;
+    return diameterMatch && hazardousMatch;
+  }) || [];
+
+  const filteredStats = data ? {
+    ...data.stats,
+    total: filteredAsteroids.length,
+    hazardous: filteredAsteroids.filter(a => a.hazardous).length,
+  } : null;
+
   if(loading) return <LoadingSpinner />;
   if(error) return <ErrorMessage message={error} onRetry={fetchAsteroids} />;
 
@@ -59,15 +70,15 @@ const NearEarth = () => {
           </p>
         </div>
         <div className="row g-4">
-          <div className="col-lg-9">
+          <div className="col-12 col-lg-9 order-2 order-lg-1">
             {/*Asteroids Stat card contain data.stats*/}
-            <AsteroidStats stats={data.stats} />
+            <AsteroidStats stats={filteredStats} />
             {/*Asteroids Charts dailyCount, asteroids, top10 */}
-            <AsteroidChart dailyCount={data?.dailyCount} asteroids={data?.asteroids} top10={data?.top10Largest}/>
+            <AsteroidChart dailyCount={data?.dailyCount} asteroids={filteredAsteroids} top10={data?.top10Largest}/>
             {/* Asteroids Table asteroids, onSelect*/}
-            <AsteroidTable asteroids={data?.asteroids} onSelect={setSelected}/>
+            <AsteroidTable asteroids={filteredAsteroids} onSelect={setSelected}/>
           </div>
-          <div className="col-lg-3">
+          <div className="col-12 col-lg-3 order-1 order-lg-2">
             <AsteroidFilters filters={filters} onChange={handleFilterChange} onSearch={handleSearch} />
           </div>
         </div>

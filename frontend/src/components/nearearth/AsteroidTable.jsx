@@ -9,7 +9,7 @@ const AsteroidTable = ({asteroids, onSelect}) => {
       <h3 className="asteroid_table_heading">
         Detailed Asteroid Data
       </h3>
-      <div className="table_responsive">
+      <div className="table-responsive">
         <table className="table asteroid_table_table">
           <thead>
             <tr>

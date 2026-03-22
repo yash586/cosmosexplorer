@@ -79,7 +79,7 @@
   transition: transform 0.2s ease;
 }
 
-.asteroid_filters_toggle-on .asteroid_filters_toggle-thumb {
+.asteroid_filters_toggle-on .asteroid_filters_toggle_thumb {
   transform: translateX(20px);
 }
 
@@ -209,6 +209,8 @@
   border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 2rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .asteroid_table_heading {

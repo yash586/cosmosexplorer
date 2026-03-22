@@ -28,7 +28,7 @@ const AsteroidFilter = ({filters, onChange, onSearch}) =>{
               }`}
               onClick={() => handleChange('hazardous', !filters.hazardous)}
             >
-              <div className="asteroid_filters_toggle-thumb" />
+              <div className="asteroid_filters_toggle_thumb" />
             </div>
         </div>
       </div>
