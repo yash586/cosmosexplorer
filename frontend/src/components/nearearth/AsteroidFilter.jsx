@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import './AsteroidCommon.css';
 
 const AsteroidFilter = ({filters, onChange, onSearch}) =>{
+
   const handleChange = (field, value) => {
     onChange({...filters, [field]:value});
   }
@@ -71,7 +73,7 @@ const AsteroidFilter = ({filters, onChange, onSearch}) =>{
       </button>
       <div className="asteroid_filters_crosslink">
         <p>🌍 Not just asteroids threaten Earth</p>
-        <a href="/earth-events">View Earth Events →</a>
+        <Link href="/earth-events">View Earth Events →</Link>
       </div>
     </div>
   );
