@@ -4,11 +4,14 @@ const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 15000,
+  timeout: 60000,
 });
 
 axiosInstance.interceptors.request.use(
-  (config) => config,
+  (config) => {
+    config.metadata = { startTime: Date.now() };
+    return config;
+  },
   (error) => Promise.reject(error),
 );
 
@@ -17,7 +20,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.code === "ECONNABORTED") {
       error.userMessage =
-        "Request timed out. NASA API may be slow — please try again.";
+        "Server is waking up — please wait a moment and try again. (Free tier cold start)";
       return Promise.reject(error);
     }
     if (!error.response) {
