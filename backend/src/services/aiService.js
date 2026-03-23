@@ -4,7 +4,7 @@ import { getCache, setCache } from "../config/redis.js";
 
 console.log("Gemini API Key:", config.gemini?.apiKey);
 console.log("Raw env:", process.env.GEMINI_API_KEY);
-const genAI = new GoogleGenerativeAI("AIzaSyDH_psgMs-9KV1nbvIL5faulgPSuX4mF8g");
+const genAI = new GoogleGenerativeAI(config.gemini.apiKey);
 
 export const explainAPOD = async (title, explanation) => {
   const cacheKey = `ai:apod:${title.replace(/\s+/g, "-").toLowerCase()}`;
