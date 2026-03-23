@@ -27,7 +27,7 @@ const NaturalEvents = () => {
       setEvents(response.data.data.events);
       if (response.length > 0) setSelected(response[0]);
     } catch (error) {
-      setError(error.message);
+      setError(error.userMessage || error.message || 'Something went wrong');
     }finally{
       setLoading(false);
     }
@@ -40,7 +40,7 @@ const NaturalEvents = () => {
       const response = await getEventCategories();
       setCategory(response.data.data);
     } catch (error) {
-      setError(error.message);
+      setError(error.userMessage || error.message || 'Something went wrong');
     }finally{
       setLoading(false);
     }

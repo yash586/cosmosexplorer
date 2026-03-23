@@ -5,6 +5,14 @@ const AsteroidFilter = ({filters, onChange, onSearch}) =>{
     onChange({...filters, [field]:value});
   }
 
+  const daysDiff = () => {
+    const start = new Date(filters.startDate);
+    const end   = new Date(filters.endDate);
+    return Math.round((end - start) / (1000 * 60 * 60 * 24));
+  };
+
+  const isInvalid = daysDiff() > 7 || daysDiff() < 0;
+
   return(
     <div className="asteroid_filters">
       <h3 className="asteroid_filters_heading">⚙️ Filters</h3>
@@ -15,6 +23,16 @@ const AsteroidFilter = ({filters, onChange, onSearch}) =>{
       <div className="asteroid_filters_group">
         <label className="asteroid_filters_label">End Date</label>
         <input type="date" className="asteroid_filters_input" value={filters.endDate} onChange={(e) => handleChange('endDate', e.target.value)}/>
+        {daysDiff() > 7 && (
+          <p className="asteroid_filters_warning">
+            ⚠️ Max 7 days — NASA API limit
+          </p>
+        )}
+        {daysDiff() < 0 && (
+          <p className="asteroid_filters_warning">
+            ⚠️ End date must be after start date
+          </p>
+        )}
       </div>
       <div className="asteroid_filters_divider"/>
       <div className="asteroid_filters_group">
@@ -48,7 +66,7 @@ const AsteroidFilter = ({filters, onChange, onSearch}) =>{
       </div>
       <div className="asteroid_filters_divider" />
 
-      <button className="asteroid_filters_btn w-100" onClick={onSearch}>
+      <button className= {`asteroid_filters_btn w-100 ${isInvalid ? 'asteroid_filters_btn--disabled' : ''}`} onClick={onSearch} disabled={isInvalid}>
         Search Asteroids
       </button>
       <div className="asteroid_filters_crosslink">

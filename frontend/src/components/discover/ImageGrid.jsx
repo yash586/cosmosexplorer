@@ -8,8 +8,12 @@ const ImageGrid = ({images}) => {
   if(!images.length){
     return(
       <div className="text-center py-5">
+        <p style={{ fontSize: '2rem' }}>🔭</p>
         <p style={{ color: '#8B949E' }}>
-          No images found. Try a different search.
+          No images found for "{query}"
+        </p>
+        <p style={{ color: '#30363D', fontSize: '0.85rem' }}>
+          Try a different search term
         </p>
       </div>
     )

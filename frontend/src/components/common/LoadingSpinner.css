@@ -8,7 +8,7 @@
   background-color: #0b0e1a;
 }
 
-.loading-spinner__icon {
+.loading-spinner_icon {
   font-size: 3rem;
   color: #00b4ff;
   animation: spin 2s linear infinite;
@@ -24,7 +24,7 @@
   }
 }
 
-.loading-spinner__text {
+.loading-spinner_text {
   color: #8b949e;
   font-size: 0.9rem;
 }

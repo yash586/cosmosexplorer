@@ -28,7 +28,7 @@ const Apod = () => {
       const response = await getAPOD(params);
       setApod(response.data.data);
     } catch (error) {
-      setError(error.message);
+      setError(error.userMessage || error.message || 'Something went wrong');
     }finally{
       setLoading(false);
     }
@@ -39,7 +39,7 @@ const Apod = () => {
       const response = await getTodayAsteroids();
       setAsteroidCount(response.data.data.stats.total);
     } catch (error) {
-      setError(error.message);
+      setError(error.userMessage || error.message || 'Something went wrong');
     }
   }
 

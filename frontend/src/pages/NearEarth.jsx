@@ -30,7 +30,7 @@ const NearEarth = () => {
       const response = await getAsteroids({start_date: currentFilters.startDate, end_date: currentFilters.endDate});
       setData(response.data.data);
     } catch (error) {
-      setError(error.message);
+      setError(error.userMessage || error.message || 'Something went wrong');
     }finally{
       setLoading(false);
     }
@@ -87,7 +87,6 @@ const NearEarth = () => {
       {
         selected && (<AsteroidModal asteroid={selected} onClose={() => setSelected(null)}/>)
       }
-      {/* Modal selected && asteroidModal asteroid, onClose*/}
     </div>
   );
 }

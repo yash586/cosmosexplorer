@@ -29,7 +29,7 @@ const SpaceWeather = () => {
       setFlares(flaresRes.data.data);
       setStorms(stormsRes.data.data);
     } catch (error) {
-      setError(error.message);
+      setError(error.userMessage || error.message || 'Something went wrong');
     } finally {
       setLoading(false);
     }

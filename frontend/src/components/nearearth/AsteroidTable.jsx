@@ -1,8 +1,18 @@
 import './AsteroidCommon.css';
 
 const AsteroidTable = ({asteroids, onSelect}) => {
-
-  if(!asteroids.length) return null;
+  if (!asteroids?.length) {
+    return (
+      <div className="asteroid_table">
+        <div className="text-center py-5">
+          <p style={{ fontSize: '2rem' }}>☄️</p>
+          <p style={{ color: '#8B949E' }}>
+            No asteroids found for selected filters
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="asteroid_table">

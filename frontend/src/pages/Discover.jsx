@@ -32,7 +32,7 @@ const Discover = () => {
       setPage(pageNum);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
-      setError(error.message);
+      setError(error.userMessage || error.message || 'Something went wrong');
     }finally{
       setLoading(false);
     }

@@ -5,7 +5,7 @@ const AsteroidModal = ({ asteroid, onClose }) => {
   if (!asteroid) return null;
 
   const fields = [
-    { label: 'NASA ID',        value: asteroid.id                                           },
+    { label: 'NASA ID', value: asteroid.id},
     { label: 'Approach Date',  value: asteroid.close_approach_date                          },
     { label: 'Miss Distance',  value: `${(asteroid.miss_distance_km/1000000).toFixed(2)}M km` },
     { label: 'Velocity',       value: `${asteroid.velocity_kmh?.toLocaleString()} km/h`     },

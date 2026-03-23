@@ -203,3 +203,10 @@
 .apod-crosslink:hover .apod-crosslink_arrow {
   transform: translateX(4px);
 }
+
+.time-travel_error {
+  color: #ff4444;
+  font-size: 0.78rem;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
