@@ -8,8 +8,8 @@ import { startKeepAlive } from './utils/keepAlive.js';
 
 startKeepAlive();
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 )
