@@ -2,7 +2,7 @@ import EventCard from './EventCard';
 import './EarthEventCommon.css';
 
 const EventList = ({eventList, selected, onSelect}) => {
-  if (!events?.length) {
+  if (!eventList?.length) {
     return (
       <div className="event-list">
         <h3 className="event-list_heading">Active Events</h3>

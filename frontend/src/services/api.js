@@ -41,3 +41,7 @@ export const getGeoStorms = (params = {}) =>
 
 export const getEventById = (id) =>
   axiosInstance.get(`/api/earth-events/${id}`);
+
+// ----- AI endpoint --------
+export const explainAPOD = (title, explanation) =>
+  axiosInstance.post("/api/ai/explain", { title, explanation });

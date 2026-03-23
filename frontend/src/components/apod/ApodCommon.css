@@ -210,3 +210,86 @@
   margin-top: 6px;
   margin-bottom: 0;
 }
+
+/* AI button */
+.apod-desc_ai-btn {
+  margin-top: 1rem;
+  padding: 8px 20px;
+  background-color: rgba(155, 89, 182, 0.15);
+  border: 1px solid rgba(155, 89, 182, 0.4);
+  border-radius: 20px;
+  color: #9b59b6;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.apod-desc_ai-btn:hover {
+  background-color: rgba(155, 89, 182, 0.25);
+  border-color: #9b59b6;
+}
+
+/* Loading */
+.apod-desc_ai-loading {
+  margin-top: 1rem;
+  color: #9b59b6;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Error */
+.apod-desc_ai-error {
+  margin-top: 0.5rem;
+  color: #ff4444;
+  font-size: 0.78rem;
+}
+
+/* AI result */
+.apod-desc_ai-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(155, 89, 182, 0.08);
+  border: 1px solid rgba(155, 89, 182, 0.2);
+  border-radius: 12px;
+}
+
+.apod-desc_ai-header {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #9b59b6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+
+.apod-desc_ai-text {
+  font-size: 0.88rem;
+  color: #e6edf3;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.apod-desc_ai-fact {
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(155, 89, 182, 0.2);
+}
+
+.apod-desc_ai-fact-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9b59b6;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.apod-desc_ai-fact p {
+  font-size: 0.85rem;
+  color: #8b949e;
+  margin: 0;
+  line-height: 1.6;
+}
