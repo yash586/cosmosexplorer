@@ -1,25 +1,35 @@
 import { useState } from 'react';
-import './DiscoverCommon.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ICONS } from '../../constants/icons';
+import styles from './Discover.module.css';
 
-const SearchBar = ({onSearch}) => {
+/**
+ * Search Bar component for NASA Image Library
+ * Submits search query on form submit
+ * @param {Function} onSearch - Callback with search query string
+ * @returns {JSX.Element} Search form
+ */
+const SearchBar = ({ onSearch }) => {
   const [value, setValue] = useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(value.trim()) onSearch(value.trim());
+    if (value.trim()) onSearch(value.trim());
   };
 
   return (
-    <form className='search-bar' onSubmit={handleSubmit}>
-      <div className='input-group search-bar_group'>
+    <form className={styles.searchBar} onSubmit={handleSubmit}>
+      <div className={`input-group ${styles.searchGroup}`}>
         <input
-        type='text'
-        className='form-control search-bar_input'
-        placeholder='Search Nasa images... e.g. "mars", "nebula", "astronaut"'
-        value={value}
-        onChange={(e) => setValue(e.target.value)} 
+          type="text"
+          className={`form-control ${styles.searchInput}`}
+          placeholder='Search NASA images... e.g. "mars", "nebula", "astronaut"'
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
-        <button type='submit' className='btn search-bar_btn'>Search</button>
+        <button type="submit" className={`btn ${styles.searchBtn}`}>
+          <FontAwesomeIcon icon={ICONS.SEARCH} size="sm" />
+          Search
+        </button>
       </div>
     </form>
   );

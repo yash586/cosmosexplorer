@@ -20,7 +20,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.code === "ECONNABORTED") {
       error.userMessage =
-        "Server is waking up — please wait a moment and try again. (Free tier cold start)";
+        "Server is waking up please wait a moment and try again. (Free tier cold start)";
       return Promise.reject(error);
     }
     if (!error.response) {

@@ -1,46 +1,66 @@
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import './AsteroidCommon.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGear, faXmark, faSatellite,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import styles from './Asteroid.module.css';
 
+/**
+ * Asteroid Filters modal with date range local filters
+ * API filters (trigger NASA fetch):
+ * Start dateauto fills end date (+7 days)
+ * End date adjustable within 7 day limit
+ * Local filters (instant, no API call):
+ * Hazardous only toggle
+ * Min diameter slider
+ * @param {Object}   filters Current filter state
+ * @param {Function} onChange Update filter state
+ * @param {Function} onSearch Trigger API fetch
+ * @returns {JSX.Element} Filter trigger modal
+ */
 const AsteroidFilter = ({ filters, onChange, onSearch }) => {
-
   const [show, setShow] = useState(false);
 
   const handleChange = (field, value) => {
     onChange({ ...filters, [field]: value });
   };
 
+  /** @param {string} startDate YYYY-MM-DD */
   const getMaxEndDate = (startDate) => {
     const max = new Date(startDate);
     max.setDate(max.getDate() + 7);
     return max.toISOString().split('T')[0];
   };
 
+  /**
+   * Selects start date → auto fills end (+7 days) fetches
+   * @param {string} startDate - YYYY-MM-DD
+   */
   const handleStartDate = (startDate) => {
-    if(!startDate || startDate.length < 10) return;
+    if (!startDate || startDate.length < 10) return;
     const end = new Date(startDate);
     end.setDate(end.getDate() + 7);
     const endDate = end.toISOString().split('T')[0];
-
     onChange({ ...filters, startDate, endDate });
     onSearch({ ...filters, startDate, endDate });
   };
 
+  /**
+   * Updates end date fetches with new range
+   * @param {string} endDate - YYYY-MM-DD
+   */
+  const handleEndDate = (endDate) => {
+    if (!endDate || endDate.length < 10) return;
+    if (new Date(endDate) < new Date(filters.startDate)) return;
+    onChange({ ...filters, endDate });
+    onSearch({ ...filters, endDate });
+  };
+
+  /** Resets all filters to default (today + 7 days) */
   const handleClear = () => {
     const today = new Date().toISOString().split('T')[0];
     const next7 = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    onChange({
-      startDate:   today,
-      endDate:     next7,
-      hazardous:   false,
-      minDiameter: 0,
-    });
-  };
-
-  const handleEndDate = (endDate) => {
-    if (!endDate || endDate.length < 10) return;
-    onChange({ ...filters, endDate });
-    onSearch({ ...filters, endDate });
+    onChange({ startDate: today, endDate: next7, hazardous: false, minDiameter: 0 });
   };
 
   const daysDiff = () => {
@@ -51,62 +71,69 @@ const AsteroidFilter = ({ filters, onChange, onSearch }) => {
 
   return (
     <>
+      {/* Trigger button */}
       <button
-        className="asteroid-filter_trigger align-self-start mt-1"
+        className={styles.filterTrigger}
         onClick={() => setShow(true)}
       >
-        ⚙️ Filters
+        <FontAwesomeIcon icon={faGear} size="sm" />
+        Filters
       </button>
+
       <Modal
         show={show}
         onHide={() => setShow(false)}
         centered
-        contentClassName="asteroid-filter_modal"
+        contentClassName={styles.filterModalContent}
       >
-        <Modal.Header className="asteroid-filter_modal-header">
-          <h5 className="asteroid-filter_modal-title">⚙️ Filters</h5>
+        <Modal.Header className={styles.filterModalHeader}>
+          <h5 className={styles.filterModalTitle}>
+            <FontAwesomeIcon icon={faGear} size="sm" />
+            Filters
+          </h5>
           <button
-            className="asteroid-filter_modal-close"
+            className={styles.filterModalClose}
             onClick={() => setShow(false)}
-          >✕</button>
+          >
+            <FontAwesomeIcon icon={faXmark} size="sm" />
+          </button>
         </Modal.Header>
 
-        <Modal.Body className="asteroid-filter_modal-body">
+        <Modal.Body className={styles.filterModalBody}>
 
-          {/* Date Range */}
-          <div className="asteroid-filter_section">
-            <p className="asteroid-filter_section-label">
-              📡 Date Range
-              <span className="asteroid-filter_hint">
+          {/* API Filters */}
+          <div className={styles.filterSection}>
+            <p className={styles.filterSectionLabel}>
+              <FontAwesomeIcon icon={faSatellite} size="xs" />
+              Date Range
+              <span className={styles.filterHint}>
                 Fetches from NASA
               </span>
             </p>
 
             {/* Start date */}
-            <div className="asteroid-filter_group">
-              <label className="asteroid-filter_label">
-                Start Date
-              </label>
+            <div className={styles.filterGroup}>
+              <label className={styles.filterLabel}>Start Date</label>
               <input
                 type="date"
-                className="asteroid-filter_input"
+                className={styles.filterInput}
                 value={filters.startDate}
                 onChange={(e) => handleStartDate(e.target.value)}
                 onKeyDown={(e) => e.preventDefault()}
               />
             </div>
 
-            {/* End date — readonly, auto filled */}
-            <div className="asteroid-filter_group">
-              <label className="asteroid-filter_label">
+            {/* End date */}
+            <div className={styles.filterGroup}>
+              <label className={styles.filterLabel}>
                 End Date
-                <span className="asteroid-filter_auto">
-                  auto filled · adjustable
+                <span className={styles.filterAutoTag}>
+                  auto filled adjustable
                 </span>
               </label>
               <input
                 type="date"
-                className="asteroid-filter_input"
+                className={styles.filterInput}
                 value={filters.endDate}
                 min={filters.startDate}
                 max={getMaxEndDate(filters.startDate)}
@@ -115,67 +142,69 @@ const AsteroidFilter = ({ filters, onChange, onSearch }) => {
               />
             </div>
 
-            {/* Date range display */}
-            <p className="asteroid-filter_range-display">
-              📅 {filters.startDate} → {filters.endDate}
-              <span>({daysDiff()} days)</span>
+            {/* Range display */}
+            <p className={styles.filterRangeDisplay}>
+              {filters.startDate} → {filters.endDate}
+              <span className={styles.filterRangeAccent}>
+                ({daysDiff()} days)
+              </span>
             </p>
           </div>
 
-          <div className="asteroid-filter_divider" />
+          <div className={styles.filterDivider} />
 
           {/* Local Filters */}
-          <div className="asteroid-filter_section">
-            <p className="asteroid-filter_section-label">
-              🔍 Local Filters
-              <span className="asteroid-filter_hint">
+          <div className={styles.filterSection}>
+            <p className={styles.filterSectionLabel}>
+              <FontAwesomeIcon icon={faMagnifyingGlass} size="xs" />
+              Local Filters
+              <span className={styles.filterHint}>
                 Filters loaded data instantly
               </span>
             </p>
 
             {/* Hazardous toggle */}
-            <div className="asteroid-filter_group">
+            <div className={styles.filterGroup}>
               <div className="d-flex justify-content-between align-items-center">
-                <label className="asteroid-filter_label mb-0">
+                <label className={`${styles.filterLabel} mb-0`}>
                   Hazardous Only
-                  {/* ✅ tooltip */}
                   <span
-                    className="asteroid-filter_tooltip-icon"
+                    className={styles.filterTooltipIcon}
                     title="Filters already loaded data. No API call needed."
                   >
                     ⓘ
                   </span>
                 </label>
                 <div
-                  className={`asteroid-filter_toggle ${
-                    filters.hazardous ? 'asteroid-filter_toggle--on' : ''
+                  className={`${styles.filterToggle} ${
+                    filters.hazardous ? styles.filterToggleOn : ''
                   }`}
                   onClick={() => handleChange('hazardous', !filters.hazardous)}
                 >
-                  <div className="asteroid-filter_toggle-thumb" />
+                  <div className={styles.filterToggleThumb} />
                 </div>
               </div>
             </div>
 
             {/* Min diameter */}
-            <div className="asteroid-filter_group">
+            <div className={styles.filterGroup}>
               <div className="d-flex justify-content-between">
-                <label className="asteroid-filter_label">
+                <label className={styles.filterLabel}>
                   Min Diameter
                   <span
-                    className="asteroid-filter_tooltip-icon"
+                    className={styles.filterTooltipIcon}
                     title="Filters already loaded data. No API call needed."
                   >
                     ⓘ
                   </span>
                 </label>
-                <span className="asteroid-filter_value">
+                <span className={styles.filterValue}>
                   {filters.minDiameter} km
                 </span>
               </div>
               <input
                 type="range"
-                className="asteroid-filter_range"
+                className={styles.filterRange}
                 min="0"
                 max="10"
                 step="0.1"
@@ -185,20 +214,17 @@ const AsteroidFilter = ({ filters, onChange, onSearch }) => {
                 }
               />
               <div className="d-flex justify-content-between">
-                <span className="asteroid-filter_range-label">0 km</span>
-                <span className="asteroid-filter_range-label">10 km</span>
+                <span className={styles.filterRangeLabel}>0 km</span>
+                <span className={styles.filterRangeLabel}>10 km</span>
               </div>
             </div>
           </div>
-
         </Modal.Body>
 
-        <Modal.Footer className="asteroid-filter_modal-footer">
-          <button
-            className="asteroid-filter_clear"
-            onClick={handleClear}
-          >
-            Clear
+        <Modal.Footer className={styles.filterModalFooter}>
+          {/* Clear */}
+          <button className={styles.filterClearBtn} onClick={handleClear}>
+            Clear Filters
           </button>
         </Modal.Footer>
       </Modal>

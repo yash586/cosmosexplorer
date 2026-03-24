@@ -1,0 +1,83 @@
+.featureCards {
+  padding: 4rem 0 6rem;
+  background-color: var(--color-bg-primary);
+}
+
+.card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  cursor: pointer;
+  transition: var(--transition-slow);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent line */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--card-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  border-color: var(--card-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  display: block;
+  color: var(--card-color);
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--card-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.arrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--card-color);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}

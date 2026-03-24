@@ -1,22 +1,34 @@
-import './Footer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ICONS } from '../../../constants/icons';
+import styles from './Footer.module.css';
+
+/**
+ * Footer component
+ * Displays branding, NASA API credit and author info
+ * @returns {JSX.Element} Site footer
+ */
 const Footer = () => {
   return (
-    <footer className="cosmos-footer">
-      <div className="d-flex justify-content-center align-items-center gap-2 mb-2">
-        <span className="cosmos-footer_star">✦</span>
-        <span className="cosmos-footer_brand">CosmosExplorer</span>
+    <footer className={styles.footer}>
+      <div className={`d-flex justify-content-center align-items-center gap-2 ${styles.brand}`}>
+        <FontAwesomeIcon
+          icon={ICONS.LOGO}
+          className={styles.brandIcon}
+        />
+        <span className={styles.brandName}>CosmosExplorer</span>
       </div>
-      <p className="cosmos-footer_text mb-0">
-        Powered by{' '}
+      <p className={styles.text}>
+        Powered by
         <a
           href="https://api.nasa.gov"
           target="_blank"
           rel="noreferrer"
-          className="cosmos-footer_link"
+          className={styles.link}
         >
-          NASA Open APIs
+        {' '}NASA Open APIs
         </a>
-        {' '} · Built by Yash Kalan · {new Date().getFullYear()}
+        {' '}Built by Yash Kalan{' '}
+        {new Date().getFullYear()}
       </p>
     </footer>
   );

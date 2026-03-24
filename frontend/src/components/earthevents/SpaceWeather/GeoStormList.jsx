@@ -1,43 +1,61 @@
-import './SpaceWeatherCommon.css';
+import { COLORS } from '../../../constants/colors';
+import styles from './SpaceWeather.module.css';
 
+/**
+ * Returns color for geomagnetic storm severity
+ * @param {string} severity 'Severe' | 'Moderate' | 'Minor'
+ * @returns {string} Hex color
+ */
 const getSeverityColor = (severity) => ({
-  Severe:   '#FF4444',
-  Moderate: '#FFB347',
-  Minor:    '#00D4AA',
-})[severity] || '#8B949E';
+  Severe:   COLORS.DANGER,
+  Moderate: COLORS.AMBER,
+  Minor:    COLORS.SAFE,
+}[severity] || COLORS.MUTED);
 
-const GeoStormList = ({storms}) => {
+/**
+ * Geo Storm List — displays recent geomagnetic storms
+ * Shows Kp index circle and severity badge
+ * Kp ≥ 7 = Severe, ≥ 5 = Moderate, < 5 = Minor
+ * @param {Array} storms Geomagnetic storm data from DONKI API
+ * @returns {JSX.Element} Storm list
+ */
+const GeoStormList = ({ storms }) => {
+  if (!storms?.length) {
+    return (
+      <p style={{ color: 'var(--color-muted)', padding: '1rem' }}>
+        No geomagnetic storms recorded
+      </p>
+    );
+  }
+
   return (
-    <div className="storm_list">
+    <div className={styles.stormList}>
       {storms.map((storm) => {
         const color = getSeverityColor(storm.severity);
         return (
-          <div key={storm.id} className="storm_item">
-
-            {/* Kp index */}
+          <div key={storm.id} className={styles.stormItem}>
             <div
-              className="storm_item_kp"
+              className={styles.stormKp}
               style={{ borderColor: color, color }}
             >
-              <span className="storm_item_kp-value">{storm.kpIndex}</span>
-              <span className="storm_item_kp-label">Kp</span>
+              <span className={styles.stormKpValue}>{storm.kpIndex}</span>
+              <span className={styles.stormKpLabel}>Kp</span>
             </div>
 
             {/* Info */}
-            <div className="storm_item_info">
-              <p className="storm_item_time">{storm.startTime}</p>
+            <div className={styles.stormInfo}>
+              <p className={styles.stormTime}>{storm.startTime}</p>
               <span
-                className="storm_item_badge"
+                className={styles.stormBadge}
                 style={{
                   backgroundColor: `${color}22`,
                   color,
-                  border: `1px solid ${color}44`
+                  border: `1px solid ${color}44`,
                 }}
               >
                 {storm.severity}
               </span>
             </div>
-
           </div>
         );
       })}

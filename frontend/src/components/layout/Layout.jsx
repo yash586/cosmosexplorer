@@ -1,18 +1,25 @@
 import Navbar from "./navbar/Navbar";
 import Footer from "./footer/Footer";
 import OfflineBanner from "../common/errorhandler/OfflineBanner";
+import styles from './Layout.module.css';
 
-const Layout = ({children}) => {
+/**
+ * Layout component wraps all pages
+ * Provides consistent Navbar, Footer and OfflineBanner
+ * @param {React.ReactNode} children Page content
+ * @returns {JSX.Element} Full page layout
+ */
+const Layout = ({ children }) => {
   return (
-    <div style={{minHeight:'100vh',display:'flex',flexDirection: 'column',backgroundColor: '#0B0E1A',}}>
-      <Navbar/>
-      <main style={{ flex: 1, paddingTop:'64px'}}>
+    <div className={styles.layout}>
+      <Navbar />
+      <main className={styles.main}>
         {children}
       </main>
       <Footer />
       <OfflineBanner />
     </div>
-  )
-}
+  );
+};
 
 export default Layout;

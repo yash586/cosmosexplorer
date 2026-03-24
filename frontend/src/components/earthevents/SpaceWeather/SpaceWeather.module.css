@@ -1,0 +1,153 @@
+.spaceWeather {
+  padding: 1.5rem 0;
+}
+
+.panel {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 100%;
+}
+
+.panelHeading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  padding: 1.2rem;
+  border-bottom: 1px solid var(--color-border);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flareList {
+  padding: 0.5rem 0;
+}
+
+.flareItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid var(--color-border);
+  transition: var(--transition);
+}
+
+.flareItem:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.flareItem:last-child {
+  border-bottom: none;
+}
+
+.flareClass {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 48px;
+  text-align: center;
+}
+
+.flareInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.flareLocation {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.flareTime {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.flareBarWrap {
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.flareBar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.stormList {
+  padding: 0.5rem 0;
+}
+
+.stormItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid var(--color-border);
+  transition: var(--transition);
+}
+
+.stormItem:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.stormItem:last-child {
+  border-bottom: none;
+}
+
+.stormKp {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stormKpValue {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stormKpLabel {
+  font-size: 0.6rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.stormInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stormTime {
+  font-size: 0.82rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.stormBadge {
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  align-self: flex-start;
+}

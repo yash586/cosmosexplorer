@@ -1,61 +1,58 @@
+import { COLORS } from "../constants/colors";
+import { ICONS } from "../constants/icons";
+
 export const EVENT_CONFIG = {
   wildfires: {
     label: "Wildfires",
-    icon: "🔥",
-    color: "#FF4444",
+    icon: ICONS.WILDFIRE,
+    color: COLORS.DANGER,
   },
   severeStorms: {
     label: "Severe Storms",
-    icon: "🌪️",
-    color: "#00B4FF",
+    icon: ICONS.STORM,
+    color: COLORS.ACCENT,
   },
   volcanoes: {
     label: "Volcanoes",
-    icon: "🌋",
-    color: "#FFB347",
+    icon: ICONS.VOLCANO,
+    color: COLORS.AMBER,
   },
   floods: {
     label: "Floods",
-    icon: "🌊",
-    color: "#00D4AA",
+    icon: ICONS.FLOOD,
+    color: COLORS.SAFE,
   },
   seaIce: {
     label: "Sea Ice",
-    icon: "🧊",
-    color: "#E6EDF3",
+    icon: ICONS.SEA_ICE,
+    color: COLORS.TEXT_PRIMARY,
   },
   drought: {
     label: "Drought",
-    icon: "☀️",
-    color: "#FFB347",
+    icon: ICONS.DROUGHT,
+    color: COLORS.AMBER,
   },
   dustHaze: {
     label: "Dust & Haze",
-    icon: "🌫️",
-    color: "#8B949E",
+    icon: ICONS.DUST,
+    color: COLORS.TEXT_MUTED,
   },
-  manmade: {
-    label: "Manmade",
-    icon: "🏭",
-    color: "#8B949E",
-  },
-  snow: {
-    label: "Snow",
-    icon: "❄️",
-    color: "#E6EDF3",
+  earthquakes: {
+    label: "Earthquakes",
+    icon: ICONS.EARTHQUAKE,
+    color: COLORS.DANGER,
   },
   landslides: {
     label: "Landslides",
-    icon: "⛰️",
-    color: "#FFB347",
+    icon: ICONS.LANDSLIDE,
+    color: COLORS.AMBER,
   },
   default: {
-    label: "All",
-    icon: "🌐",
-    color: "#8B949E",
+    label: "Other",
+    icon: ICONS.DEFAULT,
+    color: COLORS.TEXT_MUTED,
   },
 };
 
-export const getEventConfig = (categoryId) => {
-  return EVENT_CONFIG[categoryId] || EVENT_CONFIG.default;
-};
+export const getEventConfig = (categoryId) =>
+  EVENT_CONFIG[categoryId] || EVENT_CONFIG.default;

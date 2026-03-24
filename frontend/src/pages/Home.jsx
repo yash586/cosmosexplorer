@@ -1,5 +1,5 @@
-import HeroSection from '../components/home/HeroSection';
-import FeatureCards from '../components/home/FeatureCards';
+import HeroSection from '../components/home/heroSection/HeroSection';
+import FeatureCards from '../components/home/featureCards/FeatureCards';
 
 const Home = () => {
   return (

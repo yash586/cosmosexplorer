@@ -1,0 +1,83 @@
+import {
+  faStar,
+  faHome,
+  faCamera,
+  faMeteor,
+  faMagnifyingGlass,
+  faEarth,
+  faTriangleExclamation,
+  faCircleCheck,
+  faGaugeHigh,
+  faCrosshairs,
+  faFire,
+  faCloudBolt,
+  faMountainSun,
+  faWater,
+  faSnowflake,
+  faSun,
+  faSmog,
+  faHouseChimneyCrack,
+  faMountain,
+  faGlobe,
+  faSolarPanel,
+  faSatellite,
+  faSpinner,
+  faCircleExclamation,
+  faSearchPlus,
+  faWifi,
+  faRobot,
+  faGear,
+  faFilter,
+  faCalendar,
+  faArrowRight,
+  faXmark,
+  faRotate,
+} from "@fortawesome/free-solid-svg-icons";
+
+/**
+ * CosmosExplorer Icon Constants
+ * FontAwesome icons — consistent across app
+ */
+export const ICONS = {
+  LOGO: faSatellite,
+  HOME: faHome,
+
+  APOD: faCamera,
+  NEAR_EARTH: faMeteor,
+  DISCOVER: faMagnifyingGlass,
+  EARTH_EVENTS: faEarth,
+
+  HAZARDOUS: faTriangleExclamation,
+  SAFE: faCircleCheck,
+  VELOCITY: faGaugeHigh,
+  TARGET: faCrosshairs,
+
+  WILDFIRE: faFire,
+  STORM: faCloudBolt,
+  VOLCANO: faMountainSun,
+  FLOOD: faWater,
+  SEA_ICE: faSnowflake,
+  DROUGHT: faSun,
+  DUST: faSmog,
+  EARTHQUAKE: faHouseChimneyCrack,
+  LANDSLIDE: faMountain,
+  DEFAULT: faGlobe,
+
+  SOLAR_FLARE: faSun,
+  GEO_STORM: faEarth,
+  SATELLITE: faSatellite,
+
+  LOADING: faSpinner,
+  ERROR: faCircleExclamation,
+  NOT_FOUND: faMagnifyingGlass,
+  OFFLINE: faWifi,
+  AI: faRobot,
+
+  GEAR: faGear,
+  FILTER: faFilter,
+  CALENDAR: faCalendar,
+  ARROW_RIGHT: faArrowRight,
+  CLOSE: faXmark,
+  REFRESH: faRotate,
+  SEARCH: faMagnifyingGlass,
+};

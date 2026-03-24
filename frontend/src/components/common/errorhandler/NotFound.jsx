@@ -1,25 +1,37 @@
 import { useNavigate } from 'react-router-dom';
-import './NotFound.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import styles from './Common.module.css';
 
+/**
+ * 404 Not Found Page
+ * Shown when user navigates to unknown route
+ * @returns {JSX.Element} 404 page
+ */
 const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="not-found">
-      <div className="not-found_content">
-        <span className="not-found_icon">🔭</span>
-        <h1 className="not-found_title">404</h1>
-        <p className="not-found_subtitle">
+    <div className={styles.notFound}>
+      <div className={styles.notFoundContent}>
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className={styles.notFoundIcon}
+          size="3x"
+        />
+        <h1 className={styles.notFoundCode}>404</h1>
+        <p className={styles.notFoundSubtitle}>
           Lost in space...
         </p>
-        <p className="not-found_text">
+        <p className={styles.notFoundText}>
           The page you're looking for doesn't exist
         </p>
         <button
-          className="not-found_btn"
+          className={styles.primaryBtn}
           onClick={() => navigate('/')}
         >
-          ← Back to Home
+          <FontAwesomeIcon icon={faArrowLeft} size="sm" />
+          Back to Home
         </button>
       </div>
     </div>

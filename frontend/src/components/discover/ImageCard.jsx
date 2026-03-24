@@ -1,33 +1,66 @@
-import { Modal } from 'react-bootstrap';
-import './DiscoverCommon.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faExpand } from '@fortawesome/free-solid-svg-icons';
+import { ICONS } from '../../constants/icons';
+import styles from './Discover.module.css';
 
-const ImageCard = ({image, onClick}) =>{
+/**
+ * Image Card — single NASA image tile
+ * Shows thumbnail with hover overlay
+ * Displays video badge for video assets
+ * @param {Object} image NASA image data
+ * @param {Function} onClick Click handler → opens modal
+ * @returns {JSX.Element} Image card
+ */
+const ImageCard = ({ image, onClick }) => {
   const isVideo = image.mediaType === 'video';
 
   return (
-    <div className='image-card' onClick={onClick}>
-      <div className='image-card_thumb'>
+    <div className={styles.imageCard} onClick={onClick}>
+
+      {/* Thumbnail */}
+      <div className={styles.thumb}>
         {image.thumbUrl ? (
-          <img src={image.thumbUrl} alt={image.title} className='image-card_img' loading='lazy'/>
-        ):(
-          <div className='image-card_placeholder'>
-            {isVideo ? '🎥' : '🌌'}
+          <img
+            src={image.thumbUrl}
+            alt={image.title}
+            className={styles.thumbImg}
+            loading="lazy"
+          />
+        ) : (
+          <div className={styles.thumbPlaceholder}>
+            <FontAwesomeIcon
+              icon={isVideo ? faVideo : ICONS.DISCOVER}
+              size="2x"
+            />
           </div>
         )}
-        <div className='image-card_overlay'>
-          <span className='image-card_expand'>View Details</span>
+
+        {/* Hover overlay */}
+        <div className={styles.overlay}>
+          <span className={styles.overlayText}>
+            <FontAwesomeIcon icon={faExpand} size="sm" />
+            {' '}View Details
+          </span>
         </div>
+
+        {/* Video badge */}
         {isVideo && (
-          <span className="image-card__badge">🎥 Video</span>
+          <span className={styles.videoBadge}>
+            <FontAwesomeIcon icon={faVideo} size="xs" />
+            Video
+          </span>
         )}
       </div>
-      <div className='image-card_info'>
-        <p className='image-card_title'>{image.title}</p>
-        <p className='image-card_date'>
+
+      {/* Info */}
+      <div className={styles.cardInfo}>
+        <p className={styles.cardTitle}>{image.title}</p>
+        <p className={styles.cardDate}>
           {new Date(image.date).getFullYear()}
-          {image.center && ` .${image.center}`}
+          {image.center && ` · ${image.center}`}
         </p>
       </div>
+
     </div>
   );
 };

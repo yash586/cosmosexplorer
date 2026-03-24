@@ -1,30 +1,37 @@
-.cosmos-footer {
-  background-color: #0d1117;
-  border-top: 1px solid #30363d;
+.footer {
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
   padding: 1.5rem 2rem;
   text-align: center;
 }
 
-.cosmos-footer_star {
-  color: #00b4ff;
+.brand {
+  margin-bottom: 0.5rem;
 }
 
-.cosmos-footer_brand {
-  color: #e6edf3;
+.brandIcon {
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+
+.brandName {
+  color: var(--color-text);
   font-weight: 600;
   font-size: 0.9rem;
 }
 
-.cosmos-footer_text {
-  color: #8b949e;
+.text {
+  color: var(--color-muted);
   font-size: 0.78rem;
+  margin: 0;
 }
 
-.cosmos-footer_link {
-  color: #00b4ff;
+.link {
+  color: var(--color-accent);
   text-decoration: none;
+  transition: var(--transition);
 }
 
-.cosmos-footer_link:hover {
+.link:hover {
   text-decoration: underline;
 }

@@ -1,36 +1,49 @@
-import { Component } from "react";
-import './ErrorBoundary.css';
+import { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRocket, faRotate } from '@fortawesome/free-solid-svg-icons';
+import styles from './Common.module.css';
 
-class ErrorBoundary extends Component{
-  constructor(props){
-    super(props)
-    this.state = { hasError: false, error: null};
+/**
+ * Error Boundary — catches unexpected React crashes
+ * Displays friendly error UI with reload option
+ * Must be a class component (React requirement)
+ * @param {React.ReactNode} children Wrapped app content
+ */
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFormError(error){
-    return { hasError: true, error};
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
   }
 
-  componentDidCatch(error, info){
-    console.error('Error Boundary :', error, info);
+  componentDidCatch(error, info) {
+    console.error('ErrorBoundary caught:', error, info);
   }
 
-  render(){
-    if(this.state.hasError){
-      return(
-        <div className="error-boundary">
-          <div className="error-boundary_content">
-            <span className="error-boundary_icon">🚀</span>
-            <h2 className="error-boundary_title">
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className={styles.errorBoundary}>
+          <div className={styles.errorBoundaryContent}>
+            <FontAwesomeIcon
+              icon={faRocket}
+              className={styles.errorBoundaryIcon}
+              size="3x"
+            />
+            <h2 className={styles.errorBoundaryTitle}>
               Houston, we have a problem
             </h2>
-            <p className="error-boundary_message">
+            <p className={styles.errorBoundaryMessage}>
               Something crashed unexpectedly.
             </p>
             <button
-              className="error-boundary_btn"
+              className={styles.primaryBtn}
               onClick={() => window.location.reload()}
             >
+              <FontAwesomeIcon icon={faRotate} size="sm" />
               Reload Page
             </button>
           </div>

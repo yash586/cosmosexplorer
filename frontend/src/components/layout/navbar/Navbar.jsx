@@ -1,67 +1,79 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './Navbar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { ICONS } from '../../../constants/icons';
+import styles from './Navbar.module.css';
+
+const NAV_LINKS = [
+  { label: 'Home', path: '/'},
+  { label: 'APOD', path: '/apod'},
+  { label: 'Near Earth', path: '/near-earth' },
+  { label: 'Discover', path: '/discover' },
+  { label: 'Earth Events', path: '/earth-events' },
+];
 
 const Navbar = () => {
-   const [scrolled, setScrolled] = useState(false);
-   const [menuOpen, setMenuOpen] = useState(false);
-   const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-   useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-   }, []);
+  }, []);
 
-   const handleNavClick = () => setMenuOpen(false);
+  const handleNavClick = () => setMenuOpen(false);
 
-   const navLinks = [
-        { label: 'Home', path:'/'},
-        { label: 'APOD', path: '/apod'},
-        { label: 'Near Earth', path: '/near-earth'},
-        { label: 'Discover', path: '/discover'},
-        { label: 'Earth Events', path: '/earth-events'},
-   ];
-   return (
-    <nav className={`cosmos-navbar ${scrolled ? 'scrolled' : ''}`}>
-      {/* logo */}
+  return (
+    <nav className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : ''}`}>
+
+      {/* Logo */}
       <div
-        className="cosmos-navbar_logo"
+        className={styles.logo}
         onClick={() => { navigate('/'); handleNavClick(); }}
       >
-        <span className='cosmos-navbar_star'>✦</span>
-        <span className='cosmos-navbar_brand'>CosmosExplorer</span>
+        <FontAwesomeIcon
+          icon={ICONS.LOGO}
+          className={styles.logoIcon}
+        />
+        <span className={styles.logoBrand}>CosmosExplorer</span>
       </div>
-      <div className='d-none d-md-flex align-items-center gap-2'>
-        {navLinks.map((link) => (
+
+      {/* Desktop links */}
+      <div className="d-none d-md-flex align-items-center gap-2">
+        {NAV_LINKS.map((link) => (
           <NavLink
             key={link.path}
             to={link.path}
             className={({ isActive }) =>
-              `cosmos-navbar_link ${isActive ? 'cosmos-navbar_link-active' : ''}`
+              `${styles.link} ${isActive ? styles.linkActive : ''}`
             }
           >
             {link.label}
           </NavLink>
         ))}
       </div>
+
+      {/* Hamburger */}
       <button
-        className="cosmos-navbar_hamburger d-flex d-md-none"
+        className={`${styles.hamburger} d-flex d-md-none`}
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle menu"
       >
-        {menuOpen ? '✕' : '☰'}
+        <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} />
       </button>
+
+      {/* Mobile menu */}
       {menuOpen && (
-        <div className="cosmos-navbar_mobile">
-          {navLinks.map((link) => (
+        <div className={styles.mobileMenu}>
+          {NAV_LINKS.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               className={({ isActive }) =>
-                `cosmos-navbar_mobile-link ${
-                  isActive ? 'cosmos-navbar_mobile-link--active' : ''
-                }`
+                `${styles.mobileLink} ${isActive ? styles.mobileLinkActive : ''}`
               }
               onClick={handleNavClick}
             >
@@ -71,7 +83,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
-   )
-}
+  );
+};
 
 export default Navbar;

@@ -1,36 +1,41 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEarthAmericas } from '@fortawesome/free-solid-svg-icons';
 import EventCard from './EventCard';
-import './EarthEventCommon.css';
+import styles from './EarthEvent.module.css';
 
-const EventList = ({eventList, selected, onSelect}) => {
-  if (!eventList?.length) {
-    return (
-      <div className="event-list">
-        <h3 className="event-list_heading">Active Events</h3>
-        <div className="text-center py-4">
-          <p style={{ fontSize: '2rem' }}>🌍</p>
-          <p style={{ color: '#8B949E', fontSize: '0.85rem' }}>
-            No events found for this category
-          </p>
-        </div>
-      </div>
-    );
-  }
-
+/**
+ * Event List — scrollable list of active events
+ * Shows empty state if no events found
+ * @param {Array} eventList Array of EONET events
+ * @param {Object} selected Currently selected event
+ * @param {Function} onSelect Event select handler
+ * @returns {JSX.Element} Event list panel
+ */
+const EventList = ({ eventList, selected, onSelect }) => {
   return (
-    <div className="event-list">
-      <h3 className="event-list_heading">
-        Active Events
-      </h3>
-      <div className="event-list_items">
-        {eventList.map((event) => (
-          <EventCard
-            key={event.id}
-            event={event}
-            isActive={selected?.id === event.id}
-            onSelect={onSelect}
+    <div className={styles.eventList}>
+      <h3 className={styles.eventListHeading}>Active Events</h3>
+      {!eventList?.length ? (
+        <div className={styles.eventListEmpty}>
+          <FontAwesomeIcon
+            icon={faEarthAmericas}
+            size="2x"
+            style={{ marginBottom: '0.5rem', color: 'var(--color-border)' }}
           />
-        ))}
-      </div>
+          <p>No events found for this category</p>
+        </div>
+      ) : (
+        <div className={styles.eventListItems}>
+          {eventList.map((event) => (
+            <EventCard
+              key={event.id}
+              event={event}
+              isActive={selected?.id === event.id}
+              onSelect={onSelect}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
