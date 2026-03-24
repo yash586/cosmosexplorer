@@ -62,7 +62,7 @@ const ApodDescription = ({ apod }) => {
 
       {/* Error */}
       {error && (
-        <p className={styles.aiError}>{error}</p>
+        <p className={styles.aiError}>AI explanation temporarily unavailable</p>
       )}
       {aiData && (
         <div className={styles.aiResult}>
