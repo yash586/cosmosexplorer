@@ -1,6 +1,6 @@
 import Navbar from "./navbar/Navbar";
 import Footer from "./footer/Footer";
-import OfflineBanner from "../common/OfflineBanner";
+import OfflineBanner from "../common/errorhandler/OfflineBanner";
 
 const Layout = ({children}) => {
   return (

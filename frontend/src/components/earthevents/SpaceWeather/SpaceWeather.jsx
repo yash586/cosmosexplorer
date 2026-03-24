@@ -4,7 +4,7 @@ import './SpaceWeatherCommon.css';
 import { getSolarFlares, getGeoStorms } from '../../../services/api';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../../common/LoadingSpinner';
-import ErrorMessage from '../../common/ErrorMessage';
+import ErrorMessage from '../../common/errorhandler/ErrorMessage';
 
 const SpaceWeather = () => {
   const [flares, setFlares] = useState([]);

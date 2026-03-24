@@ -4,7 +4,7 @@ import ApodHero from "../components/apod/ApodHero";
 import ApodInfo from "../components/apod/ApodInfo";
 import ApodDescription from "../components/apod/ApodDescription";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import ErrorMessage from "../components/common/ErrorMessage";
+import ErrorMessage from "../components/common/errorhandler/ErrorMessage";
 import './Apod.css';
 
 const Apod = () => {

@@ -4,7 +4,7 @@ import EventDetail from './EventDetail';
 import { getEventCategories, getEarthEvents } from '../../../services/api';
 import { useEffect, useState, useCallback } from 'react';
 import LoadingSpinner from '../../common/LoadingSpinner';
-import ErrorMessage from '../../common/ErrorMessage';
+import ErrorMessage from '../../common/errorhandler/ErrorMessage';
 
 const NaturalEvents = () => {
   const [category, setCategory] = useState([]);

@@ -4,7 +4,7 @@ import SearchBar from "../components/discover/SearchBar";
 import QuickTopics from "../components/discover/QuickTopics";
 import ImageGrid from "../components/discover/ImageGrid";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import ErrorMessage from "../components/common/ErrorMessage";
+import ErrorMessage from "../components/common/errorhandler/ErrorMessage";
 import './Discover.css';
 import Pagination from "../components/discover/Pagination";
 

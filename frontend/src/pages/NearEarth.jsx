@@ -6,7 +6,7 @@ import AsteroidChart from '../components/nearearth/AsteroidChart';
 import AsteroidTable from '../components/nearearth/AsteroidTable';
 import AsteroidModal from "../components/nearearth/AsteroidModal";
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import ErrorMessage from '../components/common/ErrorMessage';
+import ErrorMessage from '../components/common/errorhandler/ErrorMessage';
 import { getDefaultDates } from "../utils/date";
 import './NearEarth.css';
 

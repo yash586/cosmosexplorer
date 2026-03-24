@@ -1,4 +1,4 @@
-import useNetworkStatus from "../../hooks/useNetworkStatus";
+import useNetworkStatus from "../../../hooks/useNetworkStatus";
 import "./OfflineBanner.css";
 
 const OfflineBanner = () => {
@@ -7,7 +7,7 @@ const OfflineBanner = () => {
 
   return (
     <div className="offline-banner">
-      📡 No internet connection — some data may be unavailable
+      📡 No internet connection some data may be unavailable
     </div>
   );
 };
