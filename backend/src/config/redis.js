@@ -1,3 +1,6 @@
+/**
+ * Redis setup file where we can set/get cache
+ */
 import Redis from "ioredis";
 import { config } from "./index.js";
 

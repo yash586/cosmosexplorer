@@ -1,3 +1,6 @@
+/**
+ * Entry point for the backend application where server gets started and initialized
+ */
 import { config } from "./src/config/index.js";
 import { app } from "./src/app.js";
 import { redis } from "./src/config/redis.js";

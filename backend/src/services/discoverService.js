@@ -3,8 +3,37 @@ import { getCache, setCache } from "../config/redis.js";
 
 const IMAGE_BASE_URL = "https://images-api.nasa.gov";
 
-// -----Search-------
-
+/**
+ * -----Search-------
+ * Search NASA image and media library
+ * Fetches images/videos from NASA Images API with optional filters
+ * and caches the result in Redis.
+ * @async
+ * @param {Object} options Search options
+ * @param {string} options.query Search keyword
+ * @param {string} [options.mediaType] Media type (image, video, audio)
+ * @param {number} options.page Page number
+ * @param {number} options.pageSize Number of results per page
+ * @param {number} [options.yearStart] Start year filter
+ * @param {number} [options.yearEnd] End year filter
+ * @param {string} [options.center] NASA center (e.g. JPL)
+ * @returns {Promise<{
+ *   total: number,
+ *   page: number,
+ *   pageSize: number,
+ *   items: Array<{
+ *     nasaId: string,
+ *     title: string,
+ *     description: string|null,
+ *     date: string,
+ *     mediaType: string,
+ *     center: string|null,
+ *     keywords: string[],
+ *     photographer: string|null,
+ *     thumbUrl: string|null
+ *   }>
+ * }>} Structured search results
+ */
 export const fetchNasaImages = async ({
   query,
   mediaType,
@@ -50,7 +79,19 @@ export const fetchNasaImages = async ({
   return result;
 };
 
-//----- Asset MetaData ----------
+/**
+ * ----- Asset MetaData ----------
+ * Fetch metadata for a specific NASA asset
+ * Retrieves detailed metadata JSON for a given NASA ID
+ * and caches the result.
+ * @async
+ * @param {string} nasaId - NASA asset ID
+ * @returns {Promise<{
+ *   nasaId: string,
+ *   location: string,
+ *   metadata: any
+ * }>} Asset metadata object
+ */
 export const fetchAssetMetadata = async (nasaId) => {
   const cachedKey = `discover:metadata:${nasaId}`;
   getCache(cachedKey);
@@ -67,8 +108,14 @@ export const fetchAssetMetadata = async (nasaId) => {
   return result;
 };
 
-// ---- Asset Captions ----
-// returns srt videos
+/**
+ * Fetch captions for a NASA asset
+ * Returns subtitle/caption files (typically SRT format)
+ * for video/audio assets.
+ * @async
+ * @param {string} nasaId - NASA asset ID
+ * @returns {Promise<any>} Captions data (SRT or JSON)
+ */
 export const fetchAssetCaptions = async (nasaId) => {
   const cachedKey = `discover:caption:${nasaId}`;
   getCache(cachedKey);
@@ -77,8 +124,22 @@ export const fetchAssetCaptions = async (nasaId) => {
   return response.data;
 };
 
-// -------Asset Manifest-------
-// returns all available sizes/versions of an asset
+/**
+ * Fetch available asset versions (manifest)
+ * Returns all available sizes and formats for a NASA asset,
+ * including original, large, medium, small, and thumbnail versions.
+ * @async
+ * @param {string} nasaId - NASA asset ID
+ * @returns {Promise<{
+ *   nasaId: string,
+ *   original: string|null,
+ *   large: string|null,
+ *   medium: string|null,
+ *   small: string|null,
+ *   thumb: string|null,
+ *   all: string[]
+ * }>} Asset file URLs grouped by size
+ */
 
 export const fetchAssetManifest = async (nasaId) => {
   const cachedKey = `discover:asset:${nasaId}`;

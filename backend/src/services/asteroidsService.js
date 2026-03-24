@@ -4,9 +4,31 @@ import { getCache, setCache } from "../config/redis.js";
 
 const NEOWS_URL = `${config.nasa.baseUrl}/neo/rest/v1`;
 
+/**
+ * Extract the first close approach data from asteroid object
+ * @param {Object} closeApproach - Asteroid close approach data
+ * @returns {Object|null} First close approach entry or null
+ */
 const getCloseApproach = (closeApproach) =>
   closeApproach.close_approach_data?.[0] || null;
 
+/**
+ * Normalize and clean raw asteroid data from NASA API
+ * Extracts only relevant fields and formats numeric values
+ * for easier frontend consumption.
+ * @param {Object} data - Raw asteroid object from NASA API
+ * @returns {{
+ *   id: string,
+ *   name: string,
+ *   hazardous: boolean,
+ *   diameter_km: number,
+ *   miss_distance_km: number|null,
+ *   velocity_kmh: number|null,
+ *   orbiting_body: string|null,
+ *   nasa_url: string,
+ *   close_approach_date: string
+ * }} Cleaned asteroid object
+ */
 const cleanAsteroid = (data) => {
   const approach = getCloseApproach(data);
   return {
@@ -30,6 +52,30 @@ const cleanAsteroid = (data) => {
   };
 };
 
+/**
+ * Process and analyze asteroid data
+ * Transforms raw NASA API response into:
+ * Clean asteroid list
+ * Statistics (total, hazardous, closest, avg velocity)
+ * Daily aggregation (for charts)
+ * Top 10 largest asteroids
+ * @param {Object} rawData - Raw response from NASA NeoWs API
+ * @returns {{
+ *   stats: {
+ *     total: number,
+ *     hazardous: number,
+ *     closetApproach: number|null,
+ *     avgVelocity: number|null
+ *   },
+ *   dailyCount: Array<{
+ *     date: string,
+ *     total: number,
+ *     hazardous: number
+ *   }>,
+ *   top10Largest: Array<Object>,
+ *   asteroids: Array<Object>
+ * }} Processed asteroid dataset
+ */
 const processAsteroids = (rawData) => {
   const allAsteroids = Object.values(rawData.near_earth_objects).flat();
   const cleaned = allAsteroids.map(cleanAsteroid);

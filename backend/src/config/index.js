@@ -1,6 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+/**
+ * all the config keys goes in this
+ */
 export const config = {
   nasa: {
     baseUrl: process.env.NASA_BASE_URL || "https://api.nasa.gov",
