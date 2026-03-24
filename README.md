@@ -235,7 +235,20 @@ Backend is deployed to Render as a web service. Set all .env variables in the Re
 
 ## Planned Features
 
-- AI-powered APOD explanation using Gemini API (disabled pending API credits)
+The AI explanation feature is implemented and ready in both backend and frontend.
+
+Backend:
+→ POST /api/ai/explain endpoint built
+→ Gemini API integration complete
+→ Redis cached same APOD never calls API twice
+
+Frontend:
+→ "Get AI Explanation" button on APOD description
+→ Shows simple explanation fun fact
+→ Loading and error states handled
+
+Status: Disabled in production pending Gemini API credits.
+To enable, add GEMINI_API_KEY to backend environment variables.
 
 ---
 
