@@ -31,7 +31,8 @@ export const getAssetMetadata = (nasaId) =>
 export const getEarthEvents = (params = {}) =>
   axiosInstance.get("/api/earth-events", { params });
 
-export const getEventCategories = () => api.get("/api/earth-events/categories");
+export const getEventCategories = () =>
+  axiosInstance.get("/api/earth-events/categories");
 
 export const getSolarFlares = (params = {}) =>
   axiosInstance.get("/api/earth-events/flares", { params });

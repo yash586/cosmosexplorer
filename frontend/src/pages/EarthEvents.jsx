@@ -7,7 +7,7 @@ const EarthEvents = () => {
       <div className='container-fluid px-4'>
         <div className='earth-page_header text-center'>
           <h1 className='earth-page_title'>
-            NASA is <span className='earth-page_content'>Watching Earth</span>
+            <span className='earth-page_accent'>NASA</span> Earth Events
           </h1>
           <p className='earth-page_subtitle'>
             Live natural events tracked by NASA satellites - wildfires, storms, volanco and more.

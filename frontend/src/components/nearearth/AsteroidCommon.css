@@ -1,151 +1,3 @@
-.asteroid_filters {
-  background-color: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 16px;
-  padding: 1.5rem;
-  position: sticky;
-  top: 80px; /* ✅ sticks while scrolling */
-}
-
-.asteroid_filters_heading {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #e6edf3;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid #30363d;
-}
-
-.asteroid_filters_group {
-  margin-bottom: 1.2rem;
-}
-
-.asteroid_filters_label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #8b949e;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.asteroid_filters_input {
-  width: 100%;
-  padding: 8px 12px;
-  background-color: #0d1117;
-  border: 1px solid #30363d;
-  border-radius: 8px;
-  color: #e6edf3;
-  font-size: 0.85rem;
-  transition: border-color 0.2s ease;
-}
-
-.asteroid_filters_input:focus {
-  outline: none;
-  border-color: #00b4ff;
-}
-
-.asteroid_filters_divider {
-  height: 1px;
-  background-color: #30363d;
-  margin: 1.2rem 0;
-}
-
-/* Toggle */
-.asteroid_filters_toggle {
-  width: 44px;
-  height: 24px;
-  background-color: #30363d;
-  border-radius: 12px;
-  cursor: pointer;
-  position: relative;
-  transition: background-color 0.2s ease;
-  flex-shrink: 0;
-}
-
-.asteroid_filters_toggle-on {
-  background-color: #00b4ff;
-}
-
-.asteroid_filters_toggle_thumb {
-  width: 18px;
-  height: 18px;
-  background-color: white;
-  border-radius: 50%;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  transition: transform 0.2s ease;
-}
-
-.asteroid_filters_toggle-on .asteroid_filters_toggle_thumb {
-  transform: translateX(20px);
-}
-
-/* Range slider */
-.asteroid_filters_range {
-  width: 100%;
-  accent-color: #00b4ff;
-  margin: 8px 0;
-  cursor: pointer;
-}
-
-.asteroid_filters_value {
-  font-size: 0.82rem;
-  color: #00b4ff;
-  font-weight: 600;
-}
-
-.asteroid_filters_range-label {
-  font-size: 0.72rem;
-  color: #8b949e;
-}
-
-/* Search button */
-.asteroid_filters_btn {
-  padding: 10px;
-  background-color: #00b4ff;
-  color: #000000;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.asteroid_filters_btn:hover {
-  background-color: #00d4ff;
-}
-
-/* Cross link */
-.asteroid_filters_crosslink {
-  margin-top: 1.2rem;
-  padding: 1rem;
-  background-color: rgba(0, 212, 170, 0.08);
-  border: 1px solid rgba(0, 212, 170, 0.2);
-  border-radius: 10px;
-  text-align: center;
-}
-
-.asteroid_filters_crosslink p {
-  font-size: 0.78rem;
-  color: #8b949e;
-  margin-bottom: 0.5rem;
-}
-
-.asteroid_filters_crosslink a {
-  font-size: 0.8rem;
-  color: #00d4aa;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.asteroid_filters_crosslink a:hover {
-  text-decoration: underline;
-}
-
 .asteroid_stat_card {
   background-color: #161b22;
   border: 1px solid #30363d;
@@ -396,4 +248,262 @@
 
 .asteroid_modal_link:hover {
   text-decoration: underline;
+}
+
+/* Trigger button */
+.asteroid-filter_trigger {
+  padding: 8px 16px;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #e6edf3;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.asteroid-filter_trigger:hover {
+  border-color: #00b4ff;
+  color: #00b4ff;
+}
+
+/* Modal overrides */
+.asteroid-filter_modal {
+  background-color: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 16px !important;
+}
+
+.asteroid-filter_modal-header {
+  background-color: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+  padding: 1rem 1.5rem !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.asteroid-filter_modal-title {
+  color: #e6edf3;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.asteroid-filter_modal-close {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.asteroid-filter_modal-close:hover {
+  background-color: #ff4444;
+  border-color: #ff4444;
+}
+
+.asteroid-filter_modal-body {
+  background-color: #161b22 !important;
+  padding: 1.5rem !important;
+}
+
+.asteroid-filter_modal-footer {
+  background-color: #161b22 !important;
+  border-top: 1px solid #30363d !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* Sections */
+.asteroid-filter_section {
+  margin-bottom: 1rem;
+}
+
+.asteroid-filter_section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #00b4ff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.asteroid-filter_hint {
+  font-size: 0.7rem;
+  color: #8b949e;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.asteroid-filter_divider {
+  height: 1px;
+  background-color: #30363d;
+  margin: 1.2rem 0;
+}
+
+/* Form elements */
+.asteroid-filter_group {
+  margin-bottom: 1rem;
+}
+
+.asteroid-filter_label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.asteroid-filter_input {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #e6edf3;
+  font-size: 0.85rem;
+  color-scheme: dark;
+  transition: border-color 0.2s ease;
+}
+
+.asteroid-filter_input:focus {
+  outline: none;
+  border-color: #00b4ff;
+}
+
+.asteroid-filter_input--readonly {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.asteroid-filter_auto {
+  font-size: 0.65rem;
+  color: #00d4aa;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  border: 1px solid #00d4aa;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+/* Date range display */
+.asteroid-filter_range-display {
+  font-size: 0.78rem;
+  color: #8b949e;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.asteroid-filter_range-display span {
+  color: #00b4ff;
+  font-weight: 600;
+}
+
+/* Tooltip icon */
+.asteroid-filter_tooltip-icon {
+  color: #8b949e;
+  font-size: 0.75rem;
+  cursor: help;
+  border: 1px solid #30363d;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}
+
+.asteroid-filter_tooltip-icon:hover {
+  color: #00b4ff;
+  border-color: #00b4ff;
+}
+
+/* Toggle */
+.asteroid-filter_toggle {
+  width: 44px;
+  height: 24px;
+  background-color: #30363d;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.asteroid-filter_toggle--on {
+  background-color: #00b4ff;
+}
+
+.asteroid-filter_toggle-thumb {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s ease;
+}
+
+.asteroid-filter_toggle--on .asteroid-filter_toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* Range slider */
+.asteroid-filter_range {
+  width: 100%;
+  accent-color: #00b4ff;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.asteroid-filter_value {
+  font-size: 0.82rem;
+  color: #00b4ff;
+  font-weight: 600;
+}
+
+.asteroid-filter_range-label {
+  font-size: 0.72rem;
+  color: #8b949e;
+}
+
+/* Clear button */
+.asteroid-filter_clear {
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #8b949e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.asteroid-filter_clear:hover {
+  border-color: #ff4444;
+  color: #ff4444;
 }

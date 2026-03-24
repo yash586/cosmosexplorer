@@ -21,9 +21,6 @@ const EventCard = ({ event, isActive, onSelect}) => {
         <p className="event_card_title">{event.title}</p>
         <p className="event_card_location">📍 {event.coordinates}</p>
       </div>
-
-      {/* Arrow */}
-      <span className="event_card_arrow">→</span>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const EventDetail = ({eventDetail}) => {
   if (!eventDetail) {
     return (
       <div className="event-detail d-flex align-items-center justify-content-center">
-        <p style={{ color: '#8B949E' }}>← Select an event to view details</p>
+        <p style={{ color: '#8B949E' }}>Select an event to view details</p>
       </div>
     );
   }
@@ -27,9 +27,7 @@ const EventDetail = ({eventDetail}) => {
       <div className="event_detail_image">
         <EventMap
           coordinates={eventDetail.coordinates}
-          title={config.title}
           color={config.color}
-          icon={config.icon}
         />
         <span
           className="event_detail_type-badge"

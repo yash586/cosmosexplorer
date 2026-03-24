@@ -1,5 +1,4 @@
 import EventFilterChips from './EventFilterChips';
-import EventStatCards from './EventStatCards';
 import EventList from './EventList';
 import EventDetail from './EventDetail';
 import { getEventCategories, getEarthEvents } from '../../../services/api';
@@ -15,17 +14,23 @@ const NaturalEvents = () => {
   const [events, setEvents] = useState([]);
   const [selected, setSelected] = useState(null);
 
-  useEffect(() =>{
-    fetchCategories();
-  }, []);
+  const fetchCategories = async () => {
+    try {
+      const response = await getEventCategories();
+      setCategory(response.data.data);
+    } catch (error) {
+       console.warn('Categories failed:', error.message);
+    }
+  };
 
   const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
       const response = await getEarthEvents({ category: activeCategory === 'all' ? null : activeCategory});
-      setEvents(response.data.data.events);
-      if (response.length > 0) setSelected(response[0]);
+      const data = response.data.data.events;
+      setEvents(data);
+      if (data.length > 0) setSelected(data[0]);
     } catch (error) {
       setError(error.userMessage || error.message || 'Something went wrong');
     }finally{
@@ -33,18 +38,9 @@ const NaturalEvents = () => {
     }
   }, [activeCategory]);
 
-  const fetchCategories = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await getEventCategories();
-      setCategory(response.data.data);
-    } catch (error) {
-      setError(error.userMessage || error.message || 'Something went wrong');
-    }finally{
-      setLoading(false);
-    }
-  }
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   useEffect(() =>{
     fetchEvents();
@@ -57,10 +53,10 @@ const NaturalEvents = () => {
     <div style={{padding:'1.5rem 0'}}>
       <EventFilterChips categories={category} activeCategory={activeCategory} onSelect={setActiveCategory}/>
       <div className='row g-4 mt-2'>
-        <div className='col-md-5'>
+        <div className='col-12 col-md-5'>
           <EventList eventList={events} selected={selected} onSelect={setSelected}/>
         </div>
-        <div className='col-md-7'>
+        <div className='col-12 col-md-7'>
           <EventDetail eventDetail={selected}/>
         </div>
       </div>

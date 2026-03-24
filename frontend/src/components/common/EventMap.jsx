@@ -10,7 +10,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl:     'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-const EventMap = ({coordinates, title, color, icon}) => {
+const EventMap = ({coordinates, color}) => {
   const hasCoords = coordinates && coordinates.length >= 2;
   const lat = hasCoords ? coordinates[1] : 20;
   const lng = hasCoords ? coordinates[0] : 0;
@@ -19,8 +19,8 @@ const EventMap = ({coordinates, title, color, icon}) => {
   return (
     <MapContainer center={position} zoom={hasCoords ? 6 :2} className='event_map' zoomControl={true} scrollWheelZoom={true}>
       <TileLayer
-        url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
       />
       {hasCoords && (
         <>
@@ -35,9 +35,7 @@ const EventMap = ({coordinates, title, color, icon}) => {
             }}
           />
           <Marker position={position}>
-            <Popup>
-              <span>{icon} {title}</span>
-            </Popup>
+            <Popup />
           </Marker>
         </>
       )}

@@ -14,7 +14,12 @@ const RiskDonutChart = ({ asteroids }) => {
     { name: 'Hazardous', value: hazardous,    color: '#FF4444' },
   ];
 
-  const pct = Math.round((nonHazardous / asteroids.length) * 100);
+  const safePct = Math.round((nonHazardous / asteroids.length) * 100);
+  const hazardousPct = Math.round((hazardous / asteroids.length) * 100);
+  const isAllHazardous = hazardousPct === 100;
+  const displayPct   = isAllHazardous ? 100 : safePct;
+  const displayLabel = isAllHazardous ? 'Hazardous' : 'Safe';
+  const displayColor = isAllHazardous ? '#FF4444' : '#00D4AA';
 
   return (
     <div style={{ position: 'relative' }}>
@@ -56,10 +61,10 @@ const RiskDonutChart = ({ asteroids }) => {
         textAlign: 'center',
         pointerEvents: 'none',
       }}>
-        <p style={{ color: '#00D4AA', fontSize: '1.8rem', fontWeight: 700, margin: 0 }}>
-          {pct}%
+        <p style={{ color: displayColor, fontSize: '1.8rem', fontWeight: 700, margin: 0 }}>
+          {displayPct}%
         </p>
-        <p style={{ color: '#8B949E', fontSize: '0.75rem', margin: 0 }}>Safe</p>
+        <p style={{ color: displayColor, fontSize: '0.75rem', margin: 0 }}>{displayLabel}</p>
       </div>
     </div>
   );

@@ -42,8 +42,8 @@ const HeroSection = () => {
       </div>
       <div className="hero_section_earth-wrap">
         <img
-          src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=1920&q=80"
-          alt="Earth from space"
+          src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&q=80"
+          alt="Earth from ISS"
           className="hero_section_earth-img"
         />
         <div className="hero_section_earth-fade" />
