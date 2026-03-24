@@ -15,8 +15,8 @@ const RiskDonutChart = ({ asteroids }) => {
   const isAllHazardous = hazardousPct === 100;
 
   const data = [
-    { name: 'Safe', value: nonHazardous, color: COLORS.SAFE   },
-    { name: 'Hazardous', value: hazardous, color: COLORS.DANGER  },
+    { name: 'Safe', value: nonHazardous, color: COLORS.SAFE},
+    { name: 'Hazardous', value: hazardous, color: COLORS.DANGER},
   ];
 
   const displayPct = isAllHazardous ? 100 : Math.round((nonHazardous / asteroids.length) * 100);
@@ -32,7 +32,6 @@ const RiskDonutChart = ({ asteroids }) => {
               <Cell key={entry.name} fill={entry.color} />
             ))}
           </Pie>
-          <Tooltip contentStyle={CHART_TOOLTIP_STYLE} />
           <Legend wrapperStyle={{ fontSize: '12px', color: COLORS.MUTED }} />
         </PieChart>
       </ResponsiveContainer>
