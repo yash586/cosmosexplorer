@@ -35,6 +35,7 @@ const NaturalEvents = () => {
     try {
       setLoading(true);
       setError(null);
+      setSelected(null);
       const res  = await getEarthEvents({
         category: activeCategory === 'all' ? null : activeCategory
       });

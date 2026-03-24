@@ -1,6 +1,7 @@
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { useEffect } from 'react';
 import styles from './EventMap.module.css';
 
 delete L.Icon.Default.prototype._getIconUrl; //
@@ -9,6 +10,30 @@ L.Icon.Default.mergeOptions({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
+
+/**
+ * MapUpdater flies to new coordinates when event changes
+ * Must be inside MapContainer to access useMap hook
+ * @param {Array} position [lat, lng]
+ * @param {boolean} hasCoords whether valid coords exist
+ */
+const MapUpdater = ({ position, hasCoords }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (hasCoords) {
+      map.flyTo(position, 6, {
+        animate:  true,
+        duration: 1.2,
+      });
+    } else {
+      map.flyTo([20, 0], 2, {
+        animate:  true,
+        duration: 1.2,
+      });
+    }
+  }, [position[0], position[1]]);
+  return null;
+};
 
 /**
  * Event Map interactive Leaflet map for EONET events
@@ -36,6 +61,7 @@ const EventMap = ({ coordinates, color }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
       />
+      {<MapUpdater position={position} hasCoords={hasCoords}/>}
       {hasCoords && (
         <>
           <Circle

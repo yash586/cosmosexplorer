@@ -22,7 +22,7 @@ const EventList = ({ eventList, selected, onSelect }) => {
             size="2x"
             style={{ marginBottom: '0.5rem', color: 'var(--color-border)' }}
           />
-          <p>No events found for this category</p>
+          <p>No active events found for this category</p>
         </div>
       ) : (
         <div className={styles.eventListItems}>
