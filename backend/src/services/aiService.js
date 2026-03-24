@@ -2,8 +2,6 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { config } from "../config/index.js";
 import { getCache, setCache } from "../config/redis.js";
 
-console.log("Gemini API Key:", config.gemini?.apiKey);
-console.log("Raw env:", process.env.GEMINI_API_KEY);
 const genAI = new GoogleGenerativeAI(config.gemini.apiKey);
 
 export const explainAPOD = async (title, explanation) => {
