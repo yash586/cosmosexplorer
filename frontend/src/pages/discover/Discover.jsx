@@ -76,7 +76,7 @@ const Discover = () => {
             {' '}Exploration
           </h1>
           <p className={styles.subtitle}>
-            Search NASA's entire image archive — 140,000+ images
+            Search NASA's entire image archive 140,000+ images
           </p>
         </div>
 

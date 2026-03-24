@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { getAPOD } from "../../services/api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShuffle, faCalendar } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +20,7 @@ const Apod = () => {
   const [apod, setApod] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const dateInputRef = useRef(null);
 
   /**
    * Fetches APOD data from backend

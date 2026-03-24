@@ -35,15 +35,16 @@
 }
 
 .apodPageDateInput {
-  padding: 8px 12px 8px 30px;
-  background-color: var(--color-bg-secondary);
+  padding: 8px 12px;
+  background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   color: var(--color-text);
   font-size: 0.85rem;
   color-scheme: dark;
   cursor: pointer;
   transition: var(--transition);
+  min-width: 150px;
 }
 
 .apodPageDateInput:focus {
@@ -52,8 +53,9 @@
 }
 
 .apodPageDateInput::-webkit-calendar-picker-indicator {
-  filter: invert(1);
+  filter: invert(1) brightness(2);
   cursor: pointer;
+  opacity: 1 !important;
 }
 
 .apodPageSurpriseBtn {

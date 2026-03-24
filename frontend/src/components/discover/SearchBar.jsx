@@ -22,7 +22,7 @@ const SearchBar = ({ onSearch }) => {
         <input
           type="text"
           className={`form-control ${styles.searchInput}`}
-          placeholder='Search NASA images... e.g. "mars", "nebula", "astronaut"'
+          placeholder='Search NASA images...'
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

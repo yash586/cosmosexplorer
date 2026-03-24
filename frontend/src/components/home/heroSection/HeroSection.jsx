@@ -22,13 +22,6 @@ const HeroSection = () => {
   return (
     <section className={styles.heroSection}>
       <div className={styles.content}>
-        <div className={styles.icon}>
-          <FontAwesomeIcon icon={ICONS.LOGO} />
-        </div>
-        <h1 className={styles.title}>
-          Cosmos
-          <span className={styles.titleAccent}>Explorer</span>
-        </h1>
         <p className={styles.subtitle}>
           Your gateway to the universe
         </p>
