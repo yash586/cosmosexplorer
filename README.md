@@ -257,5 +257,3 @@ To enable, add GEMINI_API_KEY to backend environment variables.
 Yash Kalan
 GitHub: https://github.com/yash586
 LinkedIn: https://www.linkedin.com/in/yash-kalan-35b294155/
-
-Built for Bounce Insights Technical Assessment 2026
